@@ -27,6 +27,7 @@ enemies_timeout = 0
 
 button_rect = Rect((WIDTH - BUTTON_WIDTH) // 2, (HEIGHT - BUTTON_HEIGHT) // 2, BUTTON_WIDTH, BUTTON_HEIGHT)
 
+quit_button_rect = Rect((WIDTH - 100), 20, 80, 30)
 
 mute_rect = Rect(WIDTH - 100, HEIGHT - 50, 80, 30)
 
@@ -133,6 +134,8 @@ def draw():
 
     mute_text = "On Music" if muted else "Off Music"
     screen.draw.text(mute_text, center=mute_rect.center, fontsize=20, color="white")
+    screen.draw.filled_rect(quit_button_rect, "red")
+    screen.draw.text("Quit", center=quit_button_rect.center, fontsize=22, color="white")
 
 
 def on_mouse_down(pos):
@@ -140,6 +143,9 @@ def on_mouse_down(pos):
     
     if button_rect.collidepoint(pos):  
         game_started = True  
+    
+    if quit_button_rect.collidepoint(pos):
+        exit()
 
     if mute_rect.collidepoint(pos):
         if muted:
